@@ -1,0 +1,11 @@
+{% layout 'shopify_app' %}
+
+<div id="shopify-app-root"></div>
+
+<script>
+  import ReactDOM from 'react-dom/client';
+  import App from './client/src/App';
+
+  const root = ReactDOM.createRoot(document.getElementById('shopify-app-root'));
+  root.render(<App />);
+</script>
