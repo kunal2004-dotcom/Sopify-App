@@ -1,0 +1,29 @@
+services:
+  - name: shopify-app-server
+    type: web
+    env: node
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: SHOPIFY_ACCESS_TOKEN
+        sync: false
+      - key: SHOPIFY_SHOP_NAME
+        sync: false
+      - key: AMAZON_ACCESS_KEY
+        sync: false
+      - key: AMAZON_ASSOCIATE_TAG
+        sync: false
+      - key: RAPIDAPI_KEY
+        sync: false
+
+  - name: shopify-app-client
+    type: static
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: ./client/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://shopify-app-server.onrender.com
